@@ -12,15 +12,7 @@ import org.codenarc.*
 
 @Log4j
 class CLI {
-    def options
-
-    CLI() {
-        log.debug('Entering constructor')
-
-        options = defineOptions()
-
-        log.debug('Leaving constructor')
-    }
+    def options = defineOptions()
 
     private def defineOptions() {
         log.debug('Define command line options')

@@ -12,4 +12,5 @@ class CLITestCase extends GroovyTestCase {
         def cli = new CLI()
         assertNotNull('CLI construction is failed', cli)
     }
+
 }

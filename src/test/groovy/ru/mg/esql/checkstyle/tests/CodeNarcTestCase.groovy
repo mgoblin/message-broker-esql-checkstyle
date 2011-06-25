@@ -23,7 +23,7 @@ class CodeNarcTestCase extends GroovyTestCase {
                include(name:GROOVY_FILES)
            }
            report(type:'html') {
-               option(name:'outputFile', value:'src/report.html')
+               option(name:'outputFile', value:'src/codeNarcReport.html')
            }
         }
     }
