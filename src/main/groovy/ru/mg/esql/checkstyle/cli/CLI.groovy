@@ -2,24 +2,30 @@ package ru.mg.esql.checkstyle.cli
 
 import groovy.util.logging.Log4j
 import org.apache.commons.cli.Options
-import org.codenarc.*
 
 /**
- * User: Michael Golovanov mike.golovanov@gmail.com
- * Date: 25.06.11
- * Time: 11:21
+ * Command line parser.
+ *
+ * Define command line options and parse input.
+ * @author : Michael Golovanov mike.golovanov@gmail.com
  */
-
 @Log4j
 class CLI {
-    def options = defineOptions()
 
-    private def defineOptions() {
-        log.debug('Define command line options')
-        def opts = new Options();
-        log.debug('Define command line options done')
-        return opts
+    /**
+     * Convert supported command line options to apache commons cli ru.mg.esql.checkstyle.cli.Options
+     * @return apache commons cli ru.mg.esql.checkstyle.cli.Options
+     */
+    def makeOptions(def options) {
+        log.debug('Make cli command line options')
+
+        def cliOptions = new Options();
+        // Make options
+        options?.each { String o, params -> cliOptions.addOption(o, params.hasArgs, params.descr)}
+
+        log.debug('Make cli command line options done')
+        return cliOptions
     }
 
-    String toString() { "CLI { options = $options }" }
+    String toString() { "CLI" }
 }
