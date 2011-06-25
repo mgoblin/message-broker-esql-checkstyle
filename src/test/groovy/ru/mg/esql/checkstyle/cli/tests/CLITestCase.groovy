@@ -1,4 +1,6 @@
-package ru.mg.esql.checkstyle.cli
+package ru.mg.esql.checkstyle.cli.tests
+
+import ru.mg.esql.checkstyle.cli.CLI
 
 /**
  * User: Michael Golovanov mike.golovanov@gmail.com

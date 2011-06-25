@@ -2,6 +2,7 @@ package ru.mg.esql.checkstyle.cli
 
 import groovy.util.logging.Log4j
 import org.apache.commons.cli.Options
+import org.codenarc.*
 
 /**
  * User: Michael Golovanov mike.golovanov@gmail.com
