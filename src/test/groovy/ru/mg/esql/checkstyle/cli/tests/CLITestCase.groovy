@@ -1,15 +1,14 @@
 package ru.mg.esql.checkstyle.cli.tests
 
 import groovy.util.logging.Log4j
+import org.apache.commons.cli.Options
 import org.junit.Before
 import org.junit.Test
 import ru.mg.esql.checkstyle.cli.CLI
-import static groovy.util.GroovyTestCase.assertEquals
-import static junit.framework.Assert.assertNotNull
-import static junit.framework.Assert.assertTrue
-import org.apache.commons.cli.Options
 import ru.mg.esql.checkstyle.cli.CLIOptions
-import static junit.framework.Assert.assertEquals
+import ru.mg.esql.checkstyle.cli.HelpCommand
+import static junit.framework.Assert.*
+import ru.mg.esql.checkstyle.cli.ParseESQLCommand
 
 /**
  * User: Michael Golovanov mike.golovanov@gmail.com
@@ -23,6 +22,7 @@ class CLITestCase {
 
     @Before
     void before() {
+        log.debug('Run CLITestCase')
         cli = new CLI()
     }
 
@@ -48,12 +48,50 @@ class CLITestCase {
     @Test
     void testMakeStandardOptions() {
         Options cliOpts = cli.makeOptions(new CLIOptions().run())
-        assertEquals(cliOpts.options.size(), 3)
+        assertEquals('Bad options size', cliOpts.options.size(), 3)
     }
 
     @Test
     void testToString() {
         assertEquals("CLI", cli.toString(),)
+    }
+
+    @Test
+    void testParseEmptyArgs() {
+        assertEquals(cli.parseArgs([]).class, HelpCommand)
+    }
+
+    @Test
+    void testParseArgs() {
+        def args = ['-h']
+        assertEquals(cli.parseArgs(args).class, HelpCommand)
+
+        args = ['-h', 'some']
+        assertEquals(cli.parseArgs(args).class, HelpCommand)
+
+        args = ['-i']
+        assertEquals(cli.parseArgs(args).class, HelpCommand)
+
+        args = ['-o']
+        assertEquals(cli.parseArgs(args).class, HelpCommand)
+
+        args = ['-i', '/tmp.esql', '-o', '/tmp.ast', '-h']
+        assertEquals(cli.parseArgs(args).class, HelpCommand)
+
+        args = ['-i', '/tmp.esql']
+        assertEquals(cli.parseArgs(args).class, HelpCommand)
+
+        args = ['-o', '/tmp.ast']
+        assertEquals(cli.parseArgs(args).class, HelpCommand)
+
+        args = ['-i', '/tmp.esql', '-h']
+        assertEquals(cli.parseArgs(args).class, HelpCommand)
+
+        args = ['-o', '/tmp.ast', '-h']
+        assertEquals(cli.parseArgs(args).class, HelpCommand)
+
+        args = ['-i', '/tmp.esql', '-o', '/tmp.ast']
+        assertEquals(cli.parseArgs(args).class, ParseESQLCommand)
     }
 
 }
