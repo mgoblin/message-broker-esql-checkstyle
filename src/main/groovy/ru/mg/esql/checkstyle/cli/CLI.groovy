@@ -15,13 +15,15 @@ import org.apache.commons.cli.MissingArgumentException
 @Log4j
 class CLI {
 
+    private def opts = makeOptions(new CLIOptions().run())
+
     private def parser = new GnuParser()
 
     /**
      * Convert supported command line options to apache commons cli ru.mg.esql.checkstyle.cli.Options
      * @return apache commons cli ru.mg.esql.checkstyle.cli.Options
      */
-    def makeOptions(def options) {
+    private def makeOptions(def options) {
         log.debug("Make cli command line options $options")
 
         def cliOptions = new Options();
@@ -40,7 +42,7 @@ class CLI {
      * @param args - command line agrs
      * @return
      */
-    def parseArgs(def args, def options = makeOptions(new CLIOptions().run())) {
+    def parseArgs(def args, def options = opts) {
         log.info('Starting command line args parsing')
         log.debug("Parse command line args $args with options $options")
 
