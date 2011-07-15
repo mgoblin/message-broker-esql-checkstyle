@@ -1,4 +1,4 @@
-package ru.mg.esql.checkstyle.cli
+package ru.mg.esql.checkstyle.cli.options
 
 [
         'h': [hasArgs: false, descr: 'print this message'],

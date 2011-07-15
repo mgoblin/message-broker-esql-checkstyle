@@ -6,6 +6,9 @@ import org.apache.commons.cli.GnuParser
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.MissingArgumentException
 import org.apache.commons.cli.Parser
+import ru.mg.esql.checkstyle.cli.options.OptionsUtils
+import ru.mg.esql.checkstyle.cli.commands.ParseESQLCommand
+import ru.mg.esql.checkstyle.cli.commands.HelpCommand
 
 /**
  * Command line parser.

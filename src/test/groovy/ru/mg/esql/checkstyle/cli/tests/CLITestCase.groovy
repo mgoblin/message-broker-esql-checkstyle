@@ -6,10 +6,10 @@ import org.junit.Before
 import org.junit.Test
 import ru.mg.esql.checkstyle.cli.CLI
 
-import ru.mg.esql.checkstyle.cli.HelpCommand
+import ru.mg.esql.checkstyle.cli.commands.HelpCommand
 import static junit.framework.Assert.*
-import ru.mg.esql.checkstyle.cli.ParseESQLCommand
-import ru.mg.esql.checkstyle.cli.OptionsUtils
+import ru.mg.esql.checkstyle.cli.commands.ParseESQLCommand
+import ru.mg.esql.checkstyle.cli.options.OptionsUtils
 
 /**
  * User: Michael Golovanov mike.golovanov@gmail.com

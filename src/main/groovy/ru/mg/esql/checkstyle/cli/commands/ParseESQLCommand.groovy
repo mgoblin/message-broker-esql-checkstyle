@@ -1,4 +1,4 @@
-package ru.mg.esql.checkstyle.cli
+package ru.mg.esql.checkstyle.cli.commands
 
 /**
  * Parse ESQL file

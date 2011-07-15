@@ -1,8 +1,9 @@
-package ru.mg.esql.checkstyle.cli
+package ru.mg.esql.checkstyle.cli.commands
 
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.HelpFormatter
 import groovy.util.logging.Log4j
+import ru.mg.esql.checkstyle.cli.options.OptionsUtils
 
 /**
  * Make help
@@ -15,10 +16,10 @@ class HelpCommand {
     private Options options = OptionsUtils.options()
 
     void run() {
-        log.info('Help command runned')
+        ru.mg.esql.checkstyle.cli.commands.HelpCommand.log.info('Help command runned')
         def formatter = new HelpFormatter()
 
-        log.debug('pring help for options $options')
+        ru.mg.esql.checkstyle.cli.commands.HelpCommand.log.debug('pring help for options $options')
         formatter.printHelp(SYNTAX, options)
     }
 
