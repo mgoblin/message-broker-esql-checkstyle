@@ -5,6 +5,7 @@ import org.apache.commons.cli.CommandLine
 import org.apache.commons.cli.GnuParser
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.MissingArgumentException
+import org.apache.commons.cli.Parser
 
 /**
  * Command line parser.
@@ -15,34 +16,17 @@ import org.apache.commons.cli.MissingArgumentException
 @Log4j
 class CLI {
 
-    private def opts = makeOptions(new CLIOptions().run())
+    private Options opts = OptionsUtils.options()
 
-    private def parser = new GnuParser()
-
-    /**
-     * Convert supported command line options to apache commons cli ru.mg.esql.checkstyle.cli.Options
-     * @return apache commons cli ru.mg.esql.checkstyle.cli.Options
-     */
-    private def makeOptions(def options) {
-        log.debug("Make cli command line options $options")
-
-        def cliOptions = new Options();
-        // Make options
-        options?.each { String o, params ->
-            log.debug("Making option for $o with hasArgs = $params?.hasArgs and descr = params?.descr")
-            cliOptions.addOption(o, params?.hasArgs as boolean, params?.descr as String)
-        }
-
-        log.debug('Make cli command line options done')
-        return cliOptions
-    }
+    def Parser parser = new GnuParser()
 
     /**
      * Parse command line args aginst options
      * @param args - command line agrs
-     * @return
+     * @options command line options
+     * @return  command for ags
      */
-    def parseArgs(def args, def options = opts) {
+    def parseArgs(def args, Options options = opts) {
         log.info('Starting command line args parsing')
         log.debug("Parse command line args $args with options $options")
 
@@ -61,6 +45,7 @@ class CLI {
             }
         } catch (MissingArgumentException e) {
             // Command line have errors - show help
+            log.debug('Help command selected')
             return new HelpCommand()
         } finally {
             log.info('Command line args parsing finished')
@@ -72,7 +57,7 @@ class CLI {
      * @param cmdLine command line object
      * @return true if args are valid, otherwise false
      */
-    private def canRun(CommandLine cmdLine) {
+    private boolean canRun(CommandLine cmdLine) {
         log.debug('Validate command line args')
         cmdLine.options.size() > 0 && cmdLine.hasOption('i') && cmdLine.hasOption('o') && !cmdLine.hasOption('h')
     }

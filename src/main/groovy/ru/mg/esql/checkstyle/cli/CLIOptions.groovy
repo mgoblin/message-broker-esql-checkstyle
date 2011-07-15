@@ -5,3 +5,4 @@ package ru.mg.esql.checkstyle.cli
         'i': [hasArgs: true, descr: 'input ESQL file name'],
         'o': [hasArgs: true, descr: 'output AST-tree file']
 ]
+

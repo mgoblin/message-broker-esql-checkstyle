@@ -5,10 +5,11 @@ import org.apache.commons.cli.Options
 import org.junit.Before
 import org.junit.Test
 import ru.mg.esql.checkstyle.cli.CLI
-import ru.mg.esql.checkstyle.cli.CLIOptions
+
 import ru.mg.esql.checkstyle.cli.HelpCommand
 import static junit.framework.Assert.*
 import ru.mg.esql.checkstyle.cli.ParseESQLCommand
+import ru.mg.esql.checkstyle.cli.OptionsUtils
 
 /**
  * User: Michael Golovanov mike.golovanov@gmail.com
@@ -31,23 +32,10 @@ class CLITestCase {
         assertNotNull('CLI construction is failed', cli)
     }
 
-    @Test
-    void testMakeEmptyOptions() {
-        Options cliOpts = cli.makeOptions([])
-        assertNotNull("CLI options is null", cliOpts)
-        assertTrue("ru.mg.esql.checkstyle.cli.Options is not empty", cliOpts.options.isEmpty())
-    }
-
-    @Test
-    void testMakeNullOptions() {
-        Options cliOpts = cli.makeOptions(null)
-        assertNotNull("CLI options is null", cliOpts)
-        assertTrue("ru.mg.esql.checkstyle.cli.Options is not empty", cliOpts.options.isEmpty())
-    }
 
     @Test
     void testMakeStandardOptions() {
-        Options cliOpts = cli.makeOptions(new CLIOptions().run())
+        Options cliOpts = OptionsUtils.options()
         assertEquals('Bad options size', cliOpts.options.size(), 3)
     }
 
