@@ -22,5 +22,5 @@ class HelpCommand {
         formatter.printHelp(SYNTAX, options)
     }
 
-    public String toString ( ) { 'Help command for options $options' }
+    String toString ( ) { 'Help command for options $options' }
 }
