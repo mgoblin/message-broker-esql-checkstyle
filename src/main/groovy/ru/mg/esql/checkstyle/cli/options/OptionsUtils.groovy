@@ -1,4 +1,4 @@
-package ru.mg.esql.checkstyle.cli.options
+@Typed package ru.mg.esql.checkstyle.cli.options
 
 import org.apache.commons.cli.Options
 import groovy.util.logging.Log4j
@@ -15,16 +15,17 @@ class OptionsUtils {
      */
     public static Options options() {
         def options = new CLIOptions().run();
-        ru.mg.esql.checkstyle.cli.options.OptionsUtils.log.debug("Make cli command line options $options")
+        log.debug("Make cli command line options $options")
 
-        def cliOptions = new Options();
+        Options cliOptions = new Options();
         // Make options
-        options.each { o, params ->
-            ru.mg.esql.checkstyle.cli.options.OptionsUtils.log.debug("Making option for $o with hasArgs = $params?.hasArgs and descr = params?.descr")
-            cliOptions.addOption(o, params?.hasArgs, params?.descr)
+        options.each { Map.Entry o ->
+            log.debug("Making option for ${o.key}")
+            Map params = o.value
+            cliOptions.addOption(o.key as String, params?.hasArgs as boolean, params?.descr as String)
         }
 
-        ru.mg.esql.checkstyle.cli.options.OptionsUtils.log.debug('Make cli command line options done')
+        log.debug('Make cli command line options done')
         return cliOptions
     }
 

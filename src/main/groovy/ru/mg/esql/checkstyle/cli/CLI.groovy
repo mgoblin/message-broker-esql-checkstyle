@@ -1,4 +1,4 @@
-package ru.mg.esql.checkstyle.cli
+@Typed package ru.mg.esql.checkstyle.cli
 
 import groovy.util.logging.Log4j
 import org.apache.commons.cli.CommandLine
@@ -9,6 +9,7 @@ import org.apache.commons.cli.Parser
 import ru.mg.esql.checkstyle.cli.options.OptionsUtils
 import ru.mg.esql.checkstyle.cli.commands.ParseESQLCommand
 import ru.mg.esql.checkstyle.cli.commands.HelpCommand
+import ru.mg.esql.checkstyle.cli.commands.Command
 
 /**
  * Command line parser.
@@ -21,17 +22,19 @@ class CLI {
 
     private Options opts = OptionsUtils.options()
 
-    def Parser parser = new GnuParser()
+    Parser parser = new GnuParser()
 
     /**
      * Parse command line args aginst options
      * @param args - command line agrs
      * @options command line options
-     * @return  command for ags
+     * @return command for ags
      */
-    def parseArgs(def args, Options options = opts) {
+    Command parseArgs(def args, Options options = opts) {
         log.info('Starting command line args parsing')
         log.debug("Parse command line args $args with options $options")
+
+        Command selectedCommand = new HelpCommand()
 
         // Parse agrs
         try {
@@ -41,18 +44,18 @@ class CLI {
             // Analyze user input
             if (canRun(cmdLine)) {
                 log.debug('Parse ESQL command selected')
-                return new ParseESQLCommand()
-            } else {
-                log.debug('Help command selected')
-                return new HelpCommand()
+                selectedCommand = new ParseESQLCommand()
             }
+
         } catch (MissingArgumentException e) {
             // Command line have errors - show help
             log.debug('Help command selected')
-            return new HelpCommand()
         } finally {
             log.info('Command line args parsing finished')
         }
+
+        log.debug('Help command selected')
+        return selectedCommand
     }
 
     /**

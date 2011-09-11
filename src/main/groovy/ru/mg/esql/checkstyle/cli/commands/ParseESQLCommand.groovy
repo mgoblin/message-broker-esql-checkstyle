@@ -1,8 +1,8 @@
-package ru.mg.esql.checkstyle.cli.commands
+@Typed package ru.mg.esql.checkstyle.cli.commands
 
 /**
  * Parse ESQL file
  */
-class ParseESQLCommand {
-    def run() { 'Not implemented yet.' }
+class ParseESQLCommand implements Command {
+    void run() { 'Not implemented yet.' }
 }

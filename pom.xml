@@ -13,6 +13,34 @@
 
     <url>http://mgoblin.github.com/esqlcheckstyle/</url>
 
+    <properties>
+        <repo>http://groovypp.artifactoryonline.com/groovypp</repo>
+        <groovypp-version>0.9.0_1.8.2</groovypp-version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>libs-releases</id>
+            <url>${repo}/libs-releases</url>
+        </repository>
+        <repository>
+            <id>libs-snapshots</id>
+            <url>${repo}/libs-snapshots</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>plugins-releases</id>
+            <url>${repo}/plugins-releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>plugins-snapshots</id>
+            <url>${repo}/plugins-snapshots</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
     <dependencies>
 
         <dependency>
@@ -25,6 +53,13 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>1.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mbte.groovypp</groupId>
+            <artifactId>groovypp-all</artifactId>
+            <version>${groovypp-version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
