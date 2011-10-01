@@ -44,6 +44,13 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr-runtime</artifactId>
+            <version>3.3</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>ru.mg.esql.grammar</groupId>
             <artifactId>message-broker-esql-grammar</artifactId>
             <version>1.0</version>

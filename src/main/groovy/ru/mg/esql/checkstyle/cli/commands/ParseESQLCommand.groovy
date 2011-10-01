@@ -1,6 +1,7 @@
 @Typed package ru.mg.esql.checkstyle.cli.commands
 
 import groovy.util.logging.Log4j
+import ru.mg.esql.checkstyle.cli.antlr.ESQLParser
 
 /**
  * Parse ESQL file
@@ -30,8 +31,7 @@ class ParseESQLCommand implements Command {
     }
 
     private Object runCommand(String esqlFileName, String astFileName) {
-        // Place code here
-        return null
+        return new ESQLParser()
     }
 
     private Object runCommand(String esql) {
