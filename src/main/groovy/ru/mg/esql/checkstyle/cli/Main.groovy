@@ -11,7 +11,7 @@ class Main {
         log.debug("CLI created")
         def command = cli.parseArgs(args)
         log.info("Run  " + command)
-        command.run()
+        println(command.run())
         log.info("Completed")
     }
 }
