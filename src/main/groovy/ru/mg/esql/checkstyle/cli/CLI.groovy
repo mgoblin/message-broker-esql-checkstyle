@@ -44,7 +44,10 @@ class CLI {
             // Analyze user input
             if (canRun(cmdLine)) {
                 log.debug('Parse ESQL command selected')
-                selectedCommand = new ParseESQLCommand()
+                selectedCommand = new ParseESQLCommand(
+                        esqlFileName: cmdLine.getOptionValue('i'),
+                        astFileName: cmdLine.getOptionValue('o')
+                )
             }
 
         } catch (MissingArgumentException e) {
@@ -54,7 +57,7 @@ class CLI {
             log.info('Command line args parsing finished')
         }
 
-        log.debug('Help command selected')
+        log.debug("Finally selected $selectedCommand" )
         return selectedCommand
     }
 

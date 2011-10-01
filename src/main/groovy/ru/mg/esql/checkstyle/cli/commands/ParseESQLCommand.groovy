@@ -4,5 +4,12 @@
  * Parse ESQL file
  */
 class ParseESQLCommand implements Command {
-    void run() { 'Not implemented yet.' }
+
+    String esqlFileName
+
+    String astFileName
+
+    void run(String... optionalArgs) { 'Not implemented yet.' }
+
+    String toString() { "Parse ESQL command: esql file: $esqlFileName, ast file: $astFileName" }
 }

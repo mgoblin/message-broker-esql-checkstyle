@@ -11,17 +11,17 @@ import ru.mg.esql.checkstyle.cli.options.OptionsUtils
 @Log4j
 class HelpCommand implements Command {
 
-    private static final String SYNTAX = 'java -jar esqlcheck.jar -i <arg> -o <arg>'
+    private static final String SYNTAX = 'java -jar esqlcheck.jar -i <esql_file> -o <ast_tree_file>'
 
     private Options options = OptionsUtils.options()
 
-    void run() {
+    void run(String... optionalArgs) {
         log.info('Help command runned')
         def formatter = new HelpFormatter()
 
-        log.debug('pring help for options $options')
+        log.debug("pring help for options $options")
         formatter.printHelp(SYNTAX, options)
     }
 
-    String toString ( ) { 'Help command for options $options' }
+    String toString ( ) { "Help command for options $options" }
 }
